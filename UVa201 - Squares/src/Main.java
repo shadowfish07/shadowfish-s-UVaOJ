@@ -1,17 +1,17 @@
-import java.util.Scanner;
+import java.util.*;
 public class Main {
 
 	public static void main(String[] args) {
 		int problemIndex=0;
 		Scanner in = new Scanner(System.in);
-		String input = in.nextLine();
 		while(in.hasNext())
 		{
+//			if(problemIndex>1)
+//				System.out.println();
 			boolean lines[][];
-			
-			int n=Integer.parseInt(input);
+			int n=Integer.parseInt(in.nextLine());
 			int linesNum=Integer.parseInt(in.nextLine());
-			lines=new boolean[n+1][n*2];
+			lines=new boolean[100][100];
 			while(linesNum--!=0)
 			{
 				String str[]=in.nextLine().split(" ");
@@ -26,14 +26,14 @@ public class Main {
 					lines[Integer.parseInt(str[1])][Integer.parseInt(str[2])*2]=true;
 				}
 			}
-			int result[]=new int[4];
+			int result[]=new int[10];
 			for(int i=1;i<=n;i++)
 			{
-				for(int j =1;j<=n;j+=2)
+				for(int j =1;j<n*2;j+=2)
 				{
 					if(lines[i][j])
 					{
-						for(int size=1;size<=n-i&&size<n-(j-1)/2;size++)
+						for(int size=1;size<=n-i&&size<=n-(j-1)/2;size++)
 						{
 							boolean ok=true;
 							//顶行横
@@ -97,7 +97,7 @@ public class Main {
 			System.out.println("Problem #"+problemIndex);
 			System.out.println();
 			boolean none=true;
-			for(int i =1;i<result.length;i++)
+			for(int i =1;i<10;i++)
 			{
 				if(result[i]!=0)
 				{
@@ -109,7 +109,6 @@ public class Main {
 			{
 				System.out.println("No completed squares can be found.");
 			}
-			input=in.nextLine();
 		}
 		
 	}
